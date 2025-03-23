@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta content="HSMR" name="title" />
+  <meta content="This paper recoveries biomechanically accurate human pose." name="description" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="English" name="language" />
+  <meta content="Yan Xia" name="author" />
+  <title>HSMR - Human Skeleton and Mesh Recovery</title>
+  <!-- Bootstrap -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap-4.4.1.js"></script>
+  <link href="css/bootstrap-4.4.1.css" rel="stylesheet" />
+
+  <!-- Add-ones -->
+  <script src="js/video-carousel.js"></script>
+  <script src="js/highlight-kw.js"></script>
+  <link href="css/highlight-kw.css" rel="stylesheet" />
+  <link href="css/theme.css" rel="stylesheet"/>
+
+  <link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet" />
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" rel="stylesheet" />
+  <!-- <link href="assets/favicon.svg" rel="icon" sizes="any" type="image/svg+xml" /> -->
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js"></script>
+
+  </link>
+</head>
+
+<body>
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 style="font-weight: bold">
+              <b>
+                Reconstructing <span style="color: #98BACB">Humans</span> with a <br>
+                <span style="color: #CAB6A5">Biomechanically</span> Accurate Skeleton
+              </b>
+            </h1>
+            <h4 style="color:#5a6268;">CVPR 2025</h4>
+            <hr>
+            <a href="https://scholar.isshikih.top" target="_blank">Yan Xia</a><sup>2,1</sup>&nbsp;
+            <a href="https://xzhou.me" target="_blank">Xiaowei Zhou</a><sup>2</sup>&nbsp;
+            <a href="https://www.cs.utexas.edu/~evouga/" target="_blank">Etienne Vouga</a><sup>1</sup>&nbsp;
+            <a href="https://www.cs.utexas.edu/~huangqx/" target="_blank">Qixing Huang</a><sup>1</sup>&nbsp;
+            <a href="https://geopavlakos.github.io/" target="_blank">Georgios Pavlakos</a><sup>1</sup>
+            <p><sup>1</sup>The University of Texas at Austin&nbsp;&nbsp;&nbsp;<sup>2</sup>Zhejiang University</p>
+            <div class="row justify-content-center">
+
+              <div class="column">
+                <p class="mb-5">
+                  <a class="btn btn-large btn-light" href="#" role="button"
+                    target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    <b>Paper</b>
+                  </a>
+                </p>
+              </div>
+
+              <div class="column">
+                <p class="mb-5">
+                  <a class="btn btn-large btn-light" href="https://github.com/IsshikiHugh/HSMR" role="button"
+                    target="_blank">
+                    <i class="fas fa-code"></i>
+                    <b>Code</b>
+                  </a>
+                </p>
+              </div>
+
+              <div class="column">
+                <p class="mb-5">
+                  <a class="btn btn-large btn-light" href="https://huggingface.co/spaces/IsshikiHugh/HSMR" role="button"
+                    target="_blank">
+                    <i class="fa fa-gamepad"></i>
+                    <b>HuggingFace</b>
+                  </a>
+                </p>
+              </div>
+
+              <div class="column">
+                <p class="mb-5">
+                  <a class="btn btn-large btn-light" href="https://colab.research.google.com/drive/1RDA9iKckCDKh_bbaKjO8bQ0-Lv5fw1CB?usp=sharing" role="button"
+                    target="_blank">
+                    <i class="fa fa-play"></i>
+                    <b>Colab</b>
+                  </a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h3>TL;DR</h3>
+          <hr style="margin-top: 0px" />
+
+          <p class="text-left">
+            (1) We present HSMR (<span style="color: #7e7e7e"><strong>H</strong>uman <span style="color: #b7a493"><strong>S</strong>keleton</span> and <span style="color: #85a6b7"><strong>M</strong>esh</span> <strong>R</strong>ecovery</span>), the first end-to-end approach to recover SKEL parameters from single image. <br/>
+            (2) We show how to create a dataset with pseudo ground truth to train a model for other human body models. <br/>
+            (3) We demonstrate that HSMR shows robustness in extreme poses and viewpoints, providing biomechanically accurate human pose estimation, while still matches the performance of the most closely related state-of-the-art method that regresses SMPL parameters.  <br/>
+            (4) We reveal the limitations of previous methods regressing SMPL parameters, and show how they tend to predict unnatural rotations for the body joints, leading to biomechanically inaccurate results.
+          </p>
+
+          <div id="TeaserVideos"></div>
+          <br>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <h3>Abstract</h3>
+          <hr style="margin-top: 0px" />
+
+          <img src="assets/teaser_v2.png" width="100%" />
+
+          <p class="text-left">
+            In this paper, we introduce a method for reconstructing humans in 3D from a single image using a biomechanically accurate skeleton model.
+            To achieve this, we train a transformer that takes an image as input and estimates the parameters of the model.
+            Due to the lack of training data for this task, we build a pipeline to generate pseudo ground truth data and implement a training procedure that iteratively refines these pseudo labels for improved accuracy.
+            Compared to state-of-the-art methods in 3D human pose estimation, our model achieves competitive performance on standard benchmarks, while it significantly outperforms them in settings with extreme 3D poses and viewpoints.
+            This result highlights the benefits of using a biomechanical skeleton with realistic degrees of freedom for robust pose estimation.
+            Additionally, we show that previous models frequently violate joint angle limits, leading to unnatural rotations.
+            In contrast, our approach leverages the biomechanically plausible degrees of freedom leading to more realistic joint rotation estimates.
+            We validate our approach across multiple human pose estimation benchmarks. <br>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methods -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <h3>Method</h3>
+          <hr style="margin-top: 0px" />
+          <div style="display: flex; justify-content: center;">
+            <img src="assets/HSMR-pipeline_v2.png" width="100%" />
+          </div>
+
+          <p>
+            <strong>Overview of our HSMR approach</strong>.
+            A key design choice of HSMR is the adoption of the SKEL parametric body model which is designed using a biomechanically accurate skeletal model.
+            We use a transformer-based architecture that takes as input a single image of a person and estimates the pose q and shape parameters β of the SKEL model.
+            During training, we iteratively update the pseudo ground truth we use to supervise our model, aiming to improve its quality.
+            For this, we optimize the HSMR estimate to align with the ground truth 2D keypoints (SKELify).
+            The optimization output parameters are used in future training iterations as supervision target.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+
+          <h3>Training & Evaluation Metrics</h3>
+          <hr style="margin-top: 0px" />
+          <p><strong>Training</strong>:
+            GVHMR is trained on a mixed dataset consisting of AMASS, BEDLAM, H36M, and 3DPW.
+            The model is trained from scratch and converges after 420 epochs with a batch size of 256.
+            Training takes 13 hours on 2 RTX 4090 GPUs.
+          </p>
+          <p><strong>World-grounded Metrics</strong>
+          <div style="display: flex; justify-content: center;">
+            <img src="assets/table1.png" width="80%" />
+          </div>
+          </p>
+          <p><strong>Camera-space Metrics</strong>
+          <div style="display: flex; justify-content: center;">
+            <img src="assets/table2.png" width="70%" />
+          </div>
+          </p>
+
+
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+
+  <!-- Visualization Results -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <h3>More Results</h3>
+          <hr style="margin-top: 0px" />
+
+          <center>Camera-View Visualization</center>
+          <div id="ResultsVideosInCam"></div>
+
+          <br>
+          <hr />
+
+          <center>Side-View Visualization</center>
+          <div id="ResultsVideosSide"></div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Citing -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <h3>Citation</h3>
+        <hr style="margin-top: 0px" />
+        <pre class="selectable" style="background-color: #e9eeef; padding: 1.5em 1.5em; border-radius: 15px"><code>@inproceedings{xia2025hsmr,
+  title={Reconstructing Humans with a Biomechanically Accurate Skeleton},
+  author={Xia, Yan and Zhou, Xiaowei and Vouga, Etienne and Huang, Qixing and Pavlakos, Georgios},
+  booktitle={CVPR},
+  year={2025},
+}</code></pre>
+        <hr />
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center" style="margin-bottom: 10px">
+    Thanks to
+    <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a>
+    for the website template.<br>
+    Thanks to the
+    <a href="https://zju3dv.github.io/4k4d/" target="_blank">4K4D</a>'s
+    ,
+    <a href="https://zju3dv.github.io/gvhmr/" target="_blank">GVHMR</a>'s
+    and
+    <a href="https://zju3dv.github.io/murre/" target="_blank">MURRE</a>'s
+    project pages for the useful add-ons.
+  </footer>
+
+  <!-- Auxiliary scripts. -->
+  <script>
+    // Highlight system name.
+    replaceHSMR(document.body);
+
+    // Add videos carousels.
+    const tesaer_videos = [
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/cam0.mp4" },
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/cam1.mp4" },
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/cam3.mp4" },
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/cam4.mp4" },
+    ];
+    const results_videos_in_cam = [
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/cam5.mp4" },
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/cam9.mp4" },
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/cam11.mp4" },
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/cam13.mp4" },
+    ];
+    const results_videos_side = [
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/side0.mp4" },
+      { src: "https://www.cs.utexas.edu/~pavlakos/hsmr/resources/side1.mp4" },
+    ];
+    createVideoCarousel(tesaer_videos, 'TeaserVideos', { controls: false, interval: 10000 });
+    createVideoCarousel(results_videos_in_cam, 'ResultsVideosInCam', { controls: false, interval: 5000 });
+    createVideoCarousel(results_videos_side, 'ResultsVideosSide', { controls: false, interval: 5000 });
+  </script>
+</body>
+
+</html>
