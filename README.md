@@ -1,7 +1,7 @@
 # Reconstructing Humans with a Biomechanically Accurate Skeleton
 
 <a href="https://isshikihugh.github.io/HSMR/"><img src="https://img.shields.io/website?url=https%3A%2F%2Fisshikihugh.github.io%2FHSMR%2F&label=Project%20Page&up_message=Online&up_color=CAB7A5&down_message=Offline&down_color=%23FF3F4D&logo=googlechrome&logoColor=white"></a>
-<a href="#"><img src="https://img.shields.io/badge/arXiv-xxxx.xxxxx-%23B31C1C?logo=arxiv&logoSize=auto"></a>
+<a href="https://arxiv.org/abs/2503.21751"><img src="https://img.shields.io/badge/arXiv-2503.21751-%23B31C1C?logo=arxiv&logoSize=auto"></a>
 <a href="https://www.cs.utexas.edu/~pavlakos/hsmr/resources/hsmr_suppmat.pdf"><img src="https://img.shields.io/badge/SupMat-PDF-%2347A141?logo=overleaf&logoColor=white"></a>
 <a href="https://colab.research.google.com/drive/1RDA9iKckCDKh_bbaKjO8bQ0-Lv5fw1CB?usp=sharing"><img src="https://img.shields.io/badge/Demo-Open%20In%20Colab-blue?logo=googlecolab"></a>
 <a href="https://huggingface.co/spaces/IsshikiHugh/HSMR"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Demo-Open%20In%20HF-blue"></a>
@@ -25,7 +25,7 @@
 > [Qixing Huang](https://www.cs.utexas.edu/~huangqx/),
 > [Georgios Pavlakos](https://geopavlakos.github.io/)
 > <br>
-> CVPR 2025
+> *CVPR 2025*
 
 
 ## 📢 News
