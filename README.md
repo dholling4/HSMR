@@ -25,13 +25,13 @@
 > [Qixing Huang](https://www.cs.utexas.edu/~huangqx/),
 > [Georgios Pavlakos](https://geopavlakos.github.io/)
 > <br>
-> *CVPR 2025*
+> *CVPR 2025 (Oral)*
 
 
 ## 📢 News
 
+- [2025.04.04] HSMR has been accepted as Oral paper at CVPR 2025! 🎉
 - [2025.03.28] Release HSMR demo code, evaluation code and training code.
-- [2025.02.27] HSMR got accepted by CVPR 2025! 🎉
 
 ## ⚒️ Setup
 
