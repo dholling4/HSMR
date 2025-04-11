@@ -15,9 +15,9 @@
 
 <!-- Teaser Parts -->
 
-![](https://isshikihugh.github.io/ProjectPage/HSMR/assets/teaser_v2.png)
+![](https://isshikihugh.github.io/HSMR/assets/teaser_v2.png)
 
-> [**Reconstructing Humans with a Biomechanically Accurate Skeleton**](https://isshikihugh.github.io/ProjectPage/HSMR/)
+> [**Reconstructing Humans with a Biomechanically Accurate Skeleton**](https://isshikihugh.github.io/HSMR/)
 > <br>
 > [Yan Xia](https://scholar.isshikih.top),
 > [Xiaowei Zhou](https://xzhou.me),
