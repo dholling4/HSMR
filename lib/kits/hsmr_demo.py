@@ -136,12 +136,12 @@ def prepare_mesh(pipeline, pd_params) -> Tuple[Dict, Dict]:
     B = 720  # full SKEL inference is memory consuming
     v_skin_all, v_skel_all = [], []
     for bw in asb(total=len(pd_params['poses']), bs_scope=B, enable_tqdm=True):
-        smpl_outputs = pipeline.skel_model(
+        skel_outputs = pipeline.skel_model(
                 poses = pd_params['poses'][bw.sid:bw.eid].to(pipeline.device),
                 betas = pd_params['betas'][bw.sid:bw.eid].to(pipeline.device),
             )
-        v_skin = smpl_outputs.skin_verts.detach().cpu()  # (B, Vi, 3)
-        v_skel = smpl_outputs.skel_verts.detach().cpu()  # (B, Ve, 3)
+        v_skin = skel_outputs.skin_verts.detach().cpu()  # (B, Vi, 3)
+        v_skel = skel_outputs.skel_verts.detach().cpu()  # (B, Ve, 3)
         v_skin_all.append(v_skin)
         v_skel_all.append(v_skel)
     v_skel_all = torch.cat(v_skel_all, dim=0)
