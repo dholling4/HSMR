@@ -273,22 +273,22 @@ After that, the data structure should fit:
 ```shell
 data_inputs
 ├── datasets  # The image files.
-│   ├── 3dpw
+│   ├── 3dpw
 │   │   └── imageFiles/*/*.jpg
-│   ├── coco
+│   ├── coco
 │   │   └── val2017/*.jpg
-│   ├── h36m
+│   ├── h36m
 │   │   └── images/*.jpg
-│   ├── hr-lspet
+│   ├── hr-lspet
 │   │   └── *.png
 │   ├── posetrack
 │   │   └─── posetrack2018/posetrack_data/images/*/*/*.jpg
-│   └── moyo
-│       ├── 220923_yogi_body_hands_03596_Boat_Pose_or_Paripurna_Navasana_-a
-│       │   └── YOGI_Cam_*/*.jpg
-│       ├── 220923_yogi_body_hands_03596_Boat_Pose_or_Paripurna_Navasana_-b
-│       │   └── YOGI_Cam_*/*.jpg
-│       └── ...
+│   └── moyo
+│       ├── 220923_yogi_body_hands_03596_Boat_Pose_or_Paripurna_Navasana_-a
+│       │   └── YOGI_Cam_*/*.jpg
+│       ├── 220923_yogi_body_hands_03596_Boat_Pose_or_Paripurna_Navasana_-b
+│       │   └── YOGI_Cam_*/*.jpg
+│       └── ...
 ├── hmr2_evaluation_data  # The packaged labels of standard benchmark datasets.
 │   ├── 3dpw_test.npz
 │   ├── coco_val.npz
@@ -296,7 +296,7 @@ data_inputs
 │   ├── hr-lspet_train.npz
 │   └── posetrack_2018_val.npz
 └── hsmr_evaluation_data  # The packaged labels of extra benchmark datasets.
-    └── moyo_v2.npz
+    └── moyo_v2.npz
 ```
 
   <hr>
@@ -308,7 +308,7 @@ data_inputs
   <summary>🏋 Training Datasets</summary>
   <hr>
 
-1. Download training data parts from commands below (or click the links in the table):
+1. Download training data parts through the commands below (or click the links in the table):
     ```shell
     mkdir -p data_inputs/hsmr_training_data
     wget "https://www.dropbox.com/scl/fi/tdnyxoufx8u3f7kcgruah/hsmr_training_data.part1.tar.gz?rlkey=92pm05qa8pimjhrpwipu56svn&st=id2dvek4&dl=1" \
@@ -335,6 +335,7 @@ data_inputs
     |[hsmr_training_data.part5.tar.gz](https://www.dropbox.com/scl/fi/3us8qbxra7v01marw52g3/hsmr_training_data.part5.tar.gz?rlkey=737cofc38z9imafk016n4lxmz&st=qowg65xy&dl=0)|`b0898c9ef37f417c15589224199948476cfc3abe`|39G|
     |[hsmr_training_data.part6.tar.gz](https://www.dropbox.com/scl/fi/2du8j0wll367mxmqk8u37/hsmr_training_data.part6.tar.gz?rlkey=cdz3trhq1eycyko0ahba5ojen&st=ke4a306z&dl=0)|`c7cc0a94f439fd4614b2c97d62767bcc2332f2a2`|37G|
     |[hsmr_training_data.part7.tar.gz](https://www.dropbox.com/scl/fi/kb2gv7z45d9ha3clof33j/hsmr_training_data.part7.tar.gz?rlkey=7sonxtqqhuctvzfrpecdnbpd1&st=lbv2oh5n&dl=0)|`c62b5f96d0168a5ac0eacb772ecc3eb55c9b2756`|39G|
+    - Alternatively, you can download the un-packaged webdataset tars from [HuggingFace Dataset](https://huggingface.co/datasets/IsshikiHugh/HSMR-TrainingData/tree/main).
 2. Check the integrity of the downloaded files:
     ```shell
     sha1sum hsmr_training_data.part*.tar.gz
